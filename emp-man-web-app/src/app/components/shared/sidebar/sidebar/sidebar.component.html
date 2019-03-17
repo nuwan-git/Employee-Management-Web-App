@@ -1,0 +1,30 @@
+  <!-- Page Content -->
+  <div class="px-2">
+  
+    <div class="row">
+
+      <div class="col-md-2">
+        
+        <div class="list-group">
+          
+          <a [routerLink]="['dashboard']" class="list-group-item active">DashBoard</a>
+          
+        </div>
+      </div>
+
+      <div class="col-md-10">
+
+        <div class="card card-outline-secondary my-1">
+          <div class="card-header">
+            Product Reviews
+          </div>
+          <div class="card-body">
+         
+            <router-outlet></router-outlet>
+  
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
