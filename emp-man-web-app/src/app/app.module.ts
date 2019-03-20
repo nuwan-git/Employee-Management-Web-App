@@ -13,6 +13,20 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+
+
+// import { trigger, state, style, transition, animate } from '@angular/animations';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { SearchEmployeeComponent } from './components/search-employee/search-employee.component';
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 const appRoute : Routes = [
       { path:'about', 
@@ -29,12 +43,14 @@ const appRoute : Routes = [
 
           children:[
             
-            {path:'dashboard', component:DashboardComponent}
+            {path:'add-employee', component:AddEmployeeComponent},
+            {path:'search-employee', component:SearchEmployeeComponent}
       
            ]
       },
+    
       { path:'**', 
-      component:NotfoundComponent
+      component:SidebarComponent
       }
 
 ]
@@ -49,15 +65,28 @@ const appRoute : Routes = [
     NotfoundComponent,
     ContactComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeeComponent,
+    AddEmployeeComponent,
+    SearchEmployeeComponent
+    
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     FormsModule,
+   
+    PerfectScrollbarModule,
     RouterModule.forRoot(appRoute)
   ],
-  providers: [],
+  providers: [
+      {
+          provide: PERFECT_SCROLLBAR_CONFIG,
+          useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+      }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
