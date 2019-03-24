@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {HttpModule}from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router'
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer/footer.component';
@@ -24,11 +24,13 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { SearchEmployeeComponent } from './components/search-employee/search-employee.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
 const appRoute : Routes = [
+      { path: '', redirectTo: 'sidebar', pathMatch: 'full'},
       { path:'about', 
           component:AboutComponent
        },
@@ -43,8 +45,8 @@ const appRoute : Routes = [
 
           children:[
             
-            {path:'add-employee', component:AddEmployeeComponent},
-            {path:'search-employee', component:SearchEmployeeComponent}
+            {path:'add-employee/:filter', component:AddEmployeeComponent},
+            {path:'search-employee/:filter', component:SearchEmployeeComponent}
       
            ]
       },
@@ -68,7 +70,8 @@ const appRoute : Routes = [
     HomeComponent,
     EmployeeComponent,
     AddEmployeeComponent,
-    SearchEmployeeComponent
+    SearchEmployeeComponent,
+    PagenotfoundComponent
     
   ],
   imports: [
