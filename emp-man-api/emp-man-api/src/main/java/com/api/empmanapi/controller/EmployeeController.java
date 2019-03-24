@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/emp-api")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class EmployeeController {
 
     public static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
