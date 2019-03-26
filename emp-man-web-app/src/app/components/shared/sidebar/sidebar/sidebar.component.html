@@ -1,17 +1,12 @@
   <!-- Page Content -->
   <div class="px-2">
-  
+    
     <div class="row">
 
       <div class="col-md-2">
           <!--side bar left bar--> 
-          <div class="list-group">
-			  
-              <!-- <a [routerLink]="['dashboard']" class="list-group-item active">DashBoard</a> -->
-      
-      
-              <!--side bar-->
-                  
+           <div class="list-group">
+			                 
             <nav id="sidebar" class="sidebar" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}">
               <div class="sidebar-content">
                 <perfect-scrollbar>
@@ -50,7 +45,7 @@
                     <ul>
                       <li *ngFor="let menu of menus" [ngClass]="{'active': menu.active , 'sidebar-dropdown':menu.type === 'dropdown' , 'header-menu':menu.type === 'header'}">
                         <span *ngIf="menu.type === 'header'">{{menu.title}}</span>
-                        <a *ngIf="menu.type !== 'header'" href="#" (click)='toggle(menu)'>
+                        <a *ngIf="menu.type !== 'header'" (click)='toggle(menu)'>
                           <i class="{{menu.icon}}"></i>
                           <span class="fon-size">{{menu.title}}</span>
                           <span *ngIf="menu.badge" class="badge badge-pill" [ngClass]="menu.badge.class"></span>
@@ -75,12 +70,12 @@
                 <!-- sidebar-content  -->
               <!--end side bar-->
               
-          </div>
+            </div>       
       
           <!--side bar left bar--> 
-      </div>
+      </div> 
+   
       
-     
       <div class="col-md-10" >
         <!--side bar right body-->
         <div class="card px-body card-outline-secondary my-1">
@@ -97,4 +92,4 @@
       </div>
 
     </div>
-</div>
+  </div>

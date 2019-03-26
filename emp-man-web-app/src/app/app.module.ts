@@ -32,10 +32,10 @@ const appRoute : Routes = [
       { path:'about', 
           component:AboutComponent
        },
-      { path:'home', 
-          component:HomeComponent
+       { path:'home', 
+        component:HomeComponent
       },
-      { path:'contact', 
+       { path:'contact', 
           component:ContactComponent
       },
       { path:'sidebar', 
@@ -49,8 +49,8 @@ const appRoute : Routes = [
            ]
       },
     
-      { path:'**', 
-      component:SidebarComponent
+      { path:'', 
+        component:HomeComponent
       }
 
 ]
