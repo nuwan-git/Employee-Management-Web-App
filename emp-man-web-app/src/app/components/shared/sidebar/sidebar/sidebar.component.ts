@@ -18,18 +18,15 @@ import { AddEmployeeComponent } from '../../../add-employee/add-employee.compone
 })
 export class SidebarComponent implements OnInit {
  
-  
   menus = [];
-  
+  private _rightMenuTitle : string;
 
   constructor(public sidebarservice : SidebarService, private _route:ActivatedRoute) {
     this.menus = sidebarservice.menus;
-   }
+  }
 
   ngOnInit() {
-   
-    
-  
+    this.rightMenuTitle = this.rightMenuTitle == null ? 'Employee-Management' : this.rightMenuTitle;
   }
 
   getSideBarState() {
@@ -41,7 +38,6 @@ export class SidebarComponent implements OnInit {
   }
 
   getState(currentMenu) {
-
     if (currentMenu.active) {
       return 'down';
     } else {
@@ -59,8 +55,18 @@ export class SidebarComponent implements OnInit {
         }
       });
     }
+    // calling and set values to  set rightMenuTitle
+    this.rightMenuTitle =  currentMenu.title;
   }
 
- 
+  
+
+ get rightMenuTitle() : string {
+    return this._rightMenuTitle;
+ }
+
+ set rightMenuTitle(value : string) {
+   this._rightMenuTitle = value;
+ }
 
 }
