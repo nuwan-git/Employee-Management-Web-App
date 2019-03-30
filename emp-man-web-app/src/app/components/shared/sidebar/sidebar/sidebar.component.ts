@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarService } from './sidebar.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ActivatedRoute } from '@angular/router';
+import { AddEmployeeComponent } from '../../../add-employee/add-employee.component';
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
@@ -12,16 +14,22 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       transition('up <=> down', animate(200))
     ])
   ]
+  
 })
 export class SidebarComponent implements OnInit {
-
+ 
+  
   menus = [];
+  
 
-  constructor(public sidebarservice : SidebarService) {
+  constructor(public sidebarservice : SidebarService, private _route:ActivatedRoute) {
     this.menus = sidebarservice.menus;
    }
 
   ngOnInit() {
+   
+    
+  
   }
 
   getSideBarState() {
@@ -52,5 +60,7 @@ export class SidebarComponent implements OnInit {
       });
     }
   }
+
+ 
 
 }

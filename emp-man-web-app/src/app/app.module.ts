@@ -43,8 +43,11 @@ const appRoute : Routes = [
 
           children:[
             
-            {path:'add-employee', component:AddEmployeeComponent},
-            {path:'search-employee', component:SearchEmployeeComponent}
+            // {path:'employee/:operation', component:AddEmployeeComponent},
+            {path:'employee/add-employee', component:AddEmployeeComponent},
+            {path:'employee/search-employee', component:SearchEmployeeComponent}
+            
+           
       
            ]
       },
