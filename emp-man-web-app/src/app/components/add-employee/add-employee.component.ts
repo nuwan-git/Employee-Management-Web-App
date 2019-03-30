@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Employee } from "../../models/employee";
 import { EmployeeService } from '../../services/employee.service';
@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css','./add-employee.component.scss']
 })
-export class AddEmployeeComponent implements OnInit {
+export class AddEmployeeComponent implements OnInit, AfterViewInit{
 
   private name: string;
   private employeeObj = new Employee();
@@ -21,6 +21,15 @@ export class AddEmployeeComponent implements OnInit {
     gender : ''
 
   }
+
+  //create a focus for userame when reload happen @viewChild decorator use
+  @ViewChild('nameRef') nameElementRef: ElementRef;
+
+  ngAfterViewInit () {
+    this.nameElementRef.nativeElement.focus();
+    console.log(this.nameElementRef);
+  }
+
   constructor(private route : ActivatedRoute, private _employeeService : EmployeeService, 
     private _router: Router) { }
 
