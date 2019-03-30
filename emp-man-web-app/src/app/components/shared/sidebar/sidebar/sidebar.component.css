@@ -1,4 +1,8 @@
-
+@media (min-width: 1140px) {
+  .container {
+      max-width: 1450px;
+   }
+}
 .px-2 {
     margin: 10px 0px 0px 20px;
     

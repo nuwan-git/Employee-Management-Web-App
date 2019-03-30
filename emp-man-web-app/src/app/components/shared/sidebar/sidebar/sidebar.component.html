@@ -1,18 +1,10 @@
   <!-- Page Content -->
   <div class="px-2">
-  
     <div class="row">
-
       <div class="col-md-2">
           <!--side bar left bar--> 
-          <div class="list-group">
-			  
-              <!-- <a [routerLink]="['dashboard']" class="list-group-item active">DashBoard</a> -->
-      
-      
-              <!--side bar-->
-                  
-            <nav id="sidebar" class="sidebar" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}">
+           <div class="list-group">
+		        <nav id="sidebar" class="sidebar" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}">
               <div class="sidebar-content">
                 <perfect-scrollbar>
                   <div class="sidebar-header">
@@ -59,7 +51,7 @@
                           <ul>
                             <li *ngFor="let submenu of menu.submenus">
                              
-                              <a routerLink="{{submenu.dynamicUrl}}"> {{submenu.title}}
+                              <a [routerLink]="['/sidebar/employee', submenu.dynamicUrl ]"> {{submenu.title}}
                                 <span *ngIf="submenu.badge" class="badge badge-pill" [ngClass]="submenu.badge.class">{{submenu.badge.text}}</span>
                               </a>
                             </li>
@@ -70,23 +62,17 @@
                   </div>
                 </perfect-scrollbar>
               </div>
-
             </nav>
-                <!-- sidebar-content  -->
-              <!--end side bar-->
-              
-          </div>
+          </div>       
+      </div> 
+   
       
-          <!--side bar left bar--> 
-      </div>
-      
-     
       <div class="col-md-10" >
         <!--side bar right body-->
         <div class="card px-body card-outline-secondary my-1">
           <div class="card-header">
-            Product Reviews
-          </div>
+              {{rightMenuTitle}}
+          </div>  
           <div class="card-body">
          
             <router-outlet></router-outlet>
@@ -95,6 +81,5 @@
         </div>
         <!--side bar right body-->
       </div>
-
-    </div>
+  </div>
 </div>

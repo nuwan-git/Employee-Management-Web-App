@@ -34,10 +34,10 @@ const appRoute : Routes = [
       { path:'about', 
           component:AboutComponent
        },
-      { path:'home', 
-          component:HomeComponent
+       { path:'home', 
+        component:HomeComponent
       },
-      { path:'contact', 
+       { path:'contact', 
           component:ContactComponent
       },
       { path:'sidebar', 
@@ -45,14 +45,16 @@ const appRoute : Routes = [
 
           children:[
             
-            {path:'add-employee/:filter', component:AddEmployeeComponent},
-            {path:'search-employee/:filter', component:SearchEmployeeComponent}
-      
-           ]
+            // {path:'employee/:operation', component:AddEmployeeComponent},
+            {path:'employee/add-employee', component:AddEmployeeComponent},
+            {path:'employee/search-employee', component:SearchEmployeeComponent},
+            {path:'', component:SearchEmployeeComponent}
+            
+          ]
       },
     
-      { path:'**', 
-      component:SidebarComponent
+      { path:'', 
+        component:HomeComponent
       }
 
 ]
