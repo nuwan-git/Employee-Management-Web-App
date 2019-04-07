@@ -1,21 +1,57 @@
 <div class="container-fluid bg-light py-3">
-<form (ngSubmit)="processEmployeeRegistrationForm()" class="justify-content-center">
+<form  class="justify-content-center" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-md-5">
       <div class="form-group row">
-        <label for="register-username" class="lbl col-sm-4 col-form-label">Name</label>
+        <label for="register-empName" class="lbl col-sm-4 col-form-label">Name</label>
         <div class="col-sm-8">
-          <input type="text" #nameRef class="form-control " name="name" 
-          id="register-username" placeholder="Name" [(ngModel)]="employee.name">
+          <input type="text" #nameRef class="form-control " formControlName="empName" 
+          id="register-empName" placeholder="Name" 
+          [class.is-invalid]="empName.invalid && empName.touched">
+          <div *ngIf="empName.invalid && empName.touched">
+             
+              <small class="text-danger" *ngIf="empName.errors?.required">empName is required</small>
+              <small class="text-danger" *ngIf="empName.errors?.minlength">empName must be at least 3 characters</small>
+              
+          </div>
         </div>
       </div>
-      <div class="form-group row">
+      <!-- <div class="form-group row">
         <label for="register-address" class="col-sm-4 col-form-label">Address</label>
         <div class="col-sm-8">
-          <!-- <input type="text"  class="form-control" id="address" placeholder="Address"> -->
+          
           <textarea id="address" name="address"id="register-address" 
           class="form-control" placeholder="Address" rows="4" [(ngModel)]="employee.address"></textarea>
 
+        </div>
+      </div> -->
+      <div formGroupName="address">
+        <div class="form-group row">
+          <label class="lbl col-sm-4 col-form-label">City</label>
+          <div class="col-sm-8">
+            <input type="text"  class="form-control" formControlName="city"
+            [class.is-invalid]="city.invalid && city.touched">
+            <small class="text-danger" 
+            [class.d-none]="city.valid || city.untouched">City is required</small>
+          </div>
+        </div>
+        <div class="form-check mb-3">
+              <input class="form-check-input"  formControlName="offshoreEmp" type="checkbox">
+              <label class="form-check-label">
+                Is Offshore Employee
+              </label>
+        </div>
+        <div class="form-group row">
+          <label class="lbl col-sm-4 col-form-label">State</label>
+          <div class="col-sm-8">
+            <input type="text"  class="form-control" formControlName="state">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="lbl col-sm-4 col-form-label">Postal Code</label>
+          <div class="col-sm-8">
+            <input type="text"  class="form-control" formControlName="postalCode">
+          </div>
         </div>
       </div>
       <div class="form-group row">
@@ -29,28 +65,42 @@
         <div class="form-group row">
             <label for="register-email" class="col-sm-4 col-form-label">Email</label>
             <div class="col-sm-8">
-              <input type="email" class="form-control" name="email" id="register-email" 
-              placeholder="Email" [(ngModel)]="employee.email">
+              <input type="email" class="form-control"  id="register-email" formControlName="email"
+              placeholder="Email"
+              [class.is-invalid]="email.invalid && email.touched" >
+              <div *ngIf="email.invalid && email.touched">
+             
+                  <small class="text-danger" *ngIf="email.errors?.required">Email is required</small>
+                  
+              </div>
             </div>
+            
           </div>
           <div class="form-group row">
             <label for="contactNumber" class="col-sm-4 col-form-label">Contact Number</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" name="contactNumber" 
-              id="register-contactNumber" placeholder="Phone Number" [(ngModel)]="employee.contactNumber">
+              <input type="text" class="form-control" formControlName="phoneNumber"
+              id="register-contactNumber" placeholder="Phone Number"
+              [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched">
+              <div *ngIf="phoneNumber.invalid && phoneNumber.touched">
+             
+                  <small class="text-danger" *ngIf="phoneNumber.errors?.required">Email is required</small>
+                  
+              </div>
             </div>
+           
           </div>
           <div class="form-group row">
               <label class="col-sm-4 col-form-label">Gender</label>
               <div class="col-sm-8">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="register-gender-male" name="gender" 
-                    class="custom-control-input" [(ngModel)]="employee.gender" [value]="true">
+                    <input type="radio" id="register-gender-male" formControlName="gender" 
+                    class="custom-control-input"  value="male">
                     <label class="custom-control-label" for = "register-gender-male">Male</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="register-gender-female" name="gender" 
-                      class="custom-control-input"  [(ngModel)]="employee.gender" [value]="false">
+                    <input type="radio" id="register-gender-female" formControlName="gender"
+                      class="custom-control-input"   value="female">
                     <label class="custom-control-label" for="register-gender-female">Female</label>
                   </div>
              </div>
@@ -60,4 +110,7 @@
     </div>
   </div>
 </form>
+
+{{registrationForm.status | json}}
+{{registrationForm.value | json}}
 </div>

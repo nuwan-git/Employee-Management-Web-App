@@ -4,23 +4,14 @@ import { Employee } from "../../models/employee";
 import { EmployeeService } from '../../services/employee.service';
 import {Router, Route} from '@angular/router';
 import { throwError } from 'rxjs'; 
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'add-employee',
   templateUrl: './add-employee.component.html',
   styleUrls: ['./add-employee.component.css','./add-employee.component.scss']
 })
 export class AddEmployeeComponent implements OnInit, AfterViewInit{
-
-  private name: string;
-  private employeeObj = new Employee();
-  private employee = {
-    name : '',
-    address : '',
-    email : '',
-    contactNumber : '',
-    gender : ''
-
-  }
 
   //create a focus for userame when reload happen @viewChild decorator use
   @ViewChild('nameRef') nameElementRef: ElementRef;
@@ -31,31 +22,53 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
   }
 
   constructor(private route : ActivatedRoute, private _employeeService : EmployeeService, 
-    private _router: Router) { }
+    private _router: Router, private fb: FormBuilder) { }
 
+  registrationForm: FormGroup;
   ngOnInit() {
-     this.route.params.subscribe(params => {
-      this.name = params['event-name'];
-      });
-      console.log(this.name);
-  }
+   
+    this.registrationForm = this.fb.group({
+      empName : ['',[Validators.required, Validators.minLength(3)]],
+      email : ['', [Validators.required]],
+      phoneNumber : ['', [Validators.required]],
+      gender : [''],
+      address: this.fb.group({
+        city: [''],
+        state: [''],
+        offshoreEmp : [false],
+        postalCode: ['']
+      })
 
-  processEmployeeRegistrationForm () {
-
-    this.employeeObj.name = this.employee.name;
-    this.employeeObj.address = this.employee.address;
-    this.employeeObj.email = this.employee.email;
-    this.employeeObj.contactNumber = this.employee.contactNumber;
-    this.employeeObj.gender = this.employee.gender? 'male' : 'female';
-    this.employeeObj.isActive =true;
-
-    this._employeeService.createEmployee(this.employeeObj).subscribe((rec)=>{
-     
-      this._router.navigate(['sidebar/add-employee/add-employee?filter=Add-Employee']);
-    },(error)=>{
-      console.log(error);
     });
 
+    this.registrationForm.get('address.offshoreEmp').valueChanges
+    .subscribe(checkedValue => {
+      const city = this.registrationForm.get('address.city');
+      if (checkedValue) {
+        city.setValidators(Validators.required);
+      } else {
+        city.clearValidators();
+      }
+      city.updateValueAndValidity();
+    });
   }
+
+  get empName() {
+    return this.registrationForm.get('empName');
+  }
+
+  get email() {
+    return this.registrationForm.get('email');
+  }
+
+  get phoneNumber() {
+    return this.registrationForm.get('phoneNumber');
+  }
+
+  get city() {
+    return this.registrationForm.get('address.city');
+  }
+
+  
 
 }

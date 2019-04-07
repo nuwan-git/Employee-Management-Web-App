@@ -14,7 +14,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployeeComponent } from './components/employee/employee.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 // import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -81,7 +81,7 @@ const appRoute : Routes = [
     BrowserAnimationsModule,
     HttpModule,
     FormsModule,
-   
+    ReactiveFormsModule,
     PerfectScrollbarModule,
     RouterModule.forRoot(appRoute)
   ],
