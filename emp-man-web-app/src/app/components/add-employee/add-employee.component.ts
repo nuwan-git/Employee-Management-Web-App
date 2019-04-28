@@ -29,17 +29,26 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
    
     this.registrationForm = this.fb.group({
       empName : ['',[Validators.required, Validators.minLength(3)]],
-      email : ['', [Validators.required]],
-      phoneNumber : ['', [Validators.required]],
-      gender : [''],
+      email : ['', [Validators.required,Validators.email]],
+      phoneNumber : ['', [Validators.required,Validators.minLength(10)]],
+      gender : ['male'],
       address: this.fb.group({
         city: [''],
-        state: [''],
+        state: ['',[Validators.required]],
         offshoreEmp : [false],
-        postalCode: ['']
+        postalCode: ['',[Validators.required]]
       })
 
+    
     });
+
+      //when value change this is errormesage method is going to call
+      this.registrationForm.valueChanges.subscribe((data) => {
+
+        this.logValidationErrors(this.registrationForm);
+  
+      });
+
 
     this.registrationForm.get('address.offshoreEmp').valueChanges
     .subscribe(checkedValue => {
@@ -51,6 +60,68 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
       }
       city.updateValueAndValidity();
     });
+  }
+
+  validationMessages = {
+
+    'empName' :  {
+      'required': 'Name Is Required',
+      'minlength': 'Name Must Be Greater Than 3 Characters'
+    },
+    'email' : {
+      'required': 'Email Is Required',
+      'email' : 'Email Should Be Valid One'
+    },
+    'phoneNumber' : {
+      'required' : 'Phone Number Is Required',
+      'minlength': 'Name Must Be Greater Than 10 Characters'
+    },
+    'city' : {
+      'required' : 'City Is Required'
+    },
+    'state' : {
+      'required': 'State Is Required'
+    },
+    'postalCode' : {
+      'required': 'Postal Code Is Required'
+    }
+
+  }
+
+  formErrors = {
+    'empName' : '',
+    'email' : '',
+    'phoneNumber' : '',
+    'state':'',
+    'city':'',
+    'postalCode' : '',
+  }
+
+  logValidationErrors (group: FormGroup = this.registrationForm) :void {
+
+    Object.keys(group.controls).forEach((key:string) => {
+
+      const abstractControl = group.get(key); //loads value for each key like username password etc
+      this.formErrors[key] =''; //get formError field accrding to the keys
+
+      if(!abstractControl.valid && abstractControl && (abstractControl.touched || abstractControl.dirty)) {
+     
+        const message = this.validationMessages[key]; // get error messages base on the each key
+       
+        for (const errorKey in abstractControl.errors) {
+          if(errorKey) {
+            this.formErrors[key] += message[errorKey] + '';
+          }
+        }
+        
+      }
+
+      if(abstractControl instanceof FormGroup) {
+        this.logValidationErrors(abstractControl);
+      } 
+
+    });
+
   }
 
   get empName() {
