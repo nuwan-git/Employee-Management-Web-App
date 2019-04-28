@@ -559,3 +559,9 @@
 .fon-size {
 font-size: 15px
 }
+
+@media (min-width: 1140px) {
+  .container {
+      max-width: 1450px;
+   }
+}
