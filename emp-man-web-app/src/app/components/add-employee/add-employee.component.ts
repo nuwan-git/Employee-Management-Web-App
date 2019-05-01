@@ -30,7 +30,10 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
     this.registrationForm = this.fb.group({
       empName : ['',[Validators.required, Validators.minLength(3)]],
       email : ['', [Validators.required,Validators.email]],
-      phoneNumber : ['', [Validators.required,Validators.minLength(10)]],
+      phoneNumber: this.fb.array([
+        this.addPhoneNumberFormGroup()
+      ]
+       ),
       gender : ['male'],
       address: this.fb.group({
         city: [''],
@@ -124,6 +127,26 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
 
   }
 
+// dynamically adding phone numbers when button clicking
+addPhoneNumberFormGroup () : FormGroup {
+
+  return this.fb.group({
+
+    phoneNumber: ['',[Validators.required]]
+    
+  })
+  
+}
+
+addSkillButtonSkill():void {
+  (<FormArray>this.registrationForm.get('phoneNumber')).push(this.addPhoneNumberFormGroup());
+}
+
+removeClickPhoneGroup(phoneNumberGroup : number) : void {
+  (<FormArray>this.registrationForm.get('phoneNumber')).removeAt(phoneNumberGroup);
+}
+
+
   get empName() {
     return this.registrationForm.get('empName');
   }
@@ -140,6 +163,18 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
     return this.registrationForm.get('address.city');
   }
 
+  onSubmit() {
+    console.log(this.registrationForm.value);
+    // this._registrationService.register(this.registrationForm.value)
+    //   .subscribe(
+    //     response => console.log('Success!', response),
+    //     error => console.error('Error!', error)
+    //   );
+  }
+  
+
   
 
 }
+
+
