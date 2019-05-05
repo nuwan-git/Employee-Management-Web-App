@@ -15,7 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {EmployeeService} from './services/employee.service';
 // import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -25,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { SearchEmployeeComponent } from './components/search-employee/search-employee.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ListEmployeeComponent } from './components/list-employee/list-employee.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -48,6 +50,8 @@ const appRoute : Routes = [
             // {path:'employee/:operation', component:AddEmployeeComponent},
             {path:'employee/add-employee', component:AddEmployeeComponent},
             {path:'employee/search-employee', component:SearchEmployeeComponent},
+            {path:'employee/list-employee', component:ListEmployeeComponent},
+            {path: 'employee/edit-employee/:id', component: AddEmployeeComponent},
             {path:'', component:SearchEmployeeComponent}
             
           ]
@@ -73,13 +77,15 @@ const appRoute : Routes = [
     EmployeeComponent,
     AddEmployeeComponent,
     SearchEmployeeComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ListEmployeeComponent
     
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
@@ -89,7 +95,9 @@ const appRoute : Routes = [
       {
           provide: PERFECT_SCROLLBAR_CONFIG,
           useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-      }
+      },
+      EmployeeService
+      
 
   ],
   bootstrap: [AppComponent]

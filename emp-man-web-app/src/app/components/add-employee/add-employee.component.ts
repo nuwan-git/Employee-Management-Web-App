@@ -6,6 +6,7 @@ import {Router, Route} from '@angular/router';
 import { throwError } from 'rxjs'; 
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { PhoneNumber } from '../../models/PhoneNumber';
 @Component({
   selector: 'add-employee',
   templateUrl: './add-employee.component.html',
@@ -25,6 +26,8 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
     private _router: Router, private fb: FormBuilder) { }
 
   registrationForm: FormGroup;
+  formTitle: string;
+  employee: Employee;
   ngOnInit() {
    
     this.registrationForm = this.fb.group({
@@ -63,6 +66,74 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
       }
       city.updateValueAndValidity();
     });
+
+    this.route.paramMap.subscribe(params => {
+      const empId = +params.get('id');
+      if (empId) {
+        this.formTitle = 'Update Employee';
+        this.getEmployee(empId);
+      } else {
+        this.formTitle = 'Create Employee'
+        this.employee = {
+            id: null,
+            empName: '',
+            email: '',
+            city:'',
+            state:'',
+            gender:'male',
+            postalCode:'',
+            phoneNumber:[],
+            isActive:true
+        }
+      }
+    });
+
+   
+
+   //end ngoninit 
+  }
+
+  getEmployee(empId:number) {
+      this._employeeService.getEmployee(empId).subscribe(
+        (employee:Employee) => {
+          //assign original form value into employee object before edit
+        this.employee = employee;
+        this.editEmployee(employee);
+      
+      },
+      (err: any) => console.log(err)
+      )
+  }
+
+  editEmployee(employee: Employee) {
+    console.log(employee);
+    this.registrationForm.patchValue({
+
+      empName: employee.empName,
+      email: employee.email,
+      gender: employee.gender,
+      address: {
+        city:employee.city,
+        state:employee.state,
+        postalCode:employee.postalCode
+      }
+     
+    });
+
+    this.registrationForm.setControl('phoneNumber', this.setExistingPhoneNumbers(employee.phoneNumber));
+
+    
+  }
+
+  setExistingPhoneNumbers(numbersSet: PhoneNumber[]): FormArray {
+    const formArray = new FormArray([]);
+    numbersSet.forEach(s => {
+      formArray.push(this.fb.group({
+        phoneNumber: s.phoneNumber
+      }));
+    });
+  
+    return formArray;
   }
 
   validationMessages = {
@@ -107,7 +178,7 @@ export class AddEmployeeComponent implements OnInit, AfterViewInit{
       const abstractControl = group.get(key); //loads value for each key like username password etc
       this.formErrors[key] =''; //get formError field accrding to the keys
 
-      if(!abstractControl.valid && abstractControl && (abstractControl.touched || abstractControl.dirty)) {
+      if(!abstractControl.valid && abstractControl && (abstractControl.touched || abstractControl.dirty|| abstractControl.value !=='')) {
      
         const message = this.validationMessages[key]; // get error messages base on the each key
        
@@ -143,7 +214,13 @@ addSkillButtonSkill():void {
 }
 
 removeClickPhoneGroup(phoneNumberGroup : number) : void {
-  (<FormArray>this.registrationForm.get('phoneNumber')).removeAt(phoneNumberGroup);
+ // (<FormArray>this.registrationForm.get('phoneNumber')).removeAt(phoneNumberGroup);
+
+  // when removing each array index need to update array as dirty and touched
+  const addressFormArray = <FormArray>this.registrationForm.get('phoneNumber');
+  addressFormArray.removeAt(phoneNumberGroup);
+  addressFormArray.markAsDirty();
+  addressFormArray.markAsTouched();
 }
 
 
@@ -164,12 +241,31 @@ removeClickPhoneGroup(phoneNumberGroup : number) : void {
   }
 
   onSubmit() {
-    console.log(this.registrationForm.value);
-    // this._registrationService.register(this.registrationForm.value)
-    //   .subscribe(
-    //     response => console.log('Success!', response),
-    //     error => console.error('Error!', error)
-    //   );
+    this.mapFormValuesToEmployeeModel();
+
+    if(this.employee.id){
+      this._employeeService.updateEmployee(this.employee).subscribe(
+        () => this._router.navigate(['sidebar/employee/list-employee']),
+        (err: any) => console.log(err)
+      );
+    } else 
+    {
+      this._employeeService.addEmployee(this.employee).subscribe(
+        () => this._router.navigate(['sidebar/employee/list-employee']),
+        (err: any) => console.log(err)
+      );
+    }
+  }
+
+  mapFormValuesToEmployeeModel() {
+    this.employee.empName = this.registrationForm.value.empName;
+    this.employee.email = this.registrationForm.value.email;
+    this.employee.city = this.registrationForm.value.address.city;
+    this.employee.state = this.registrationForm.value.address.state;
+    this.employee.gender = this.registrationForm.value.gender;
+    this.employee.postalCode = this.registrationForm.value.address.postalCode;
+    this.employee.phoneNumber = this.registrationForm.value.phoneNumber;
+   
   }
   
 

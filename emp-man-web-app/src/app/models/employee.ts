@@ -1,12 +1,16 @@
-export class Employee {
+
+import {PhoneNumber} from './PhoneNumber'
+export interface Employee {
 
     id : number;
-    name : string;
+    empName : string;
     email : string;
-    address : string;
-    contactNumber : string;
+    phoneNumber : PhoneNumber[];
     gender : string;
-    isActive : boolean = true;
+    city: string,
+    state: string,
+    postalCode: string,
+    isActive : boolean;
 
 
 }

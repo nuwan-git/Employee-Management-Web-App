@@ -101,17 +101,17 @@
                 <label for="contactNumber">Contact Number</label>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-sm btn-primary" (click)="addSkillButtonSkill()" 
+                <button class="btn btn-sm btn-primary mb-2" (click)="addSkillButtonSkill()" 
                 type="button">Add</button>
             </div>
           </div>
-          <div class="row ml-10" style="padding-left: 197px;">
+          <div class="row ml-10" style="padding-left: 200px;">
               <div class=" row form-group" formArrayName = "phoneNumber" 
               *ngFor ="let phoneNumber of phoneNumber.controls; let i =index">
                     <div class="row" [formGroupName]="i">       
                       <div class="col-md-10">
                         <input type="text" class="form-control" style="width: 240px;" 
-                        formControlName="phoneNumber"
+                        formControlName="phoneNumber" 
                         id="register-contactNumber" placeholder="Phone Number"
                         [ngClass]="{'text-danger' : phoneNumber.get('phoneNumber').invalid &&
                         phoneNumber.get('phoneNumber').touched }">
@@ -157,4 +157,5 @@
 
 {{registrationForm.status | json}}
 {{registrationForm.value | json}}
+{{registrationForm.error | json}}
 </div>
