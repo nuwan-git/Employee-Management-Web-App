@@ -1,0 +1,25 @@
+
+// @import "styles";
+
+/*import from sass folder scss**/
+@import "styles";
+
+$fontPrimary:'Germania One';
+
+label {
+    font-family:'Germania One';
+    font-size: 15px;
+  
+}
+input, textarea {
+
+    font-family:'Oswald';
+    font-size: 13px;
+    
+
+}
+
+.btn {
+    font-family:'Germania One';
+    size: 16px;
+}
