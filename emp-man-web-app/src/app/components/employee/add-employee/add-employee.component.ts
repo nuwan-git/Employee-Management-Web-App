@@ -1,12 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee } from "../../models/employee";
-import { EmployeeService } from '../../services/employee.service';
+import { Employee } from "../models/employee";
+import { EmployeeService } from '../services/employee.service';
 import {Router, Route} from '@angular/router';
 import { throwError } from 'rxjs'; 
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { PhoneNumber } from '../../models/PhoneNumber';
+import { PhoneNumber } from '../models/PhoneNumber';
 @Component({
   selector: 'add-employee',
   templateUrl: './add-employee.component.html',
@@ -245,13 +245,13 @@ removeClickPhoneGroup(phoneNumberGroup : number) : void {
 
     if(this.employee.id){
       this._employeeService.updateEmployee(this.employee).subscribe(
-        () => this._router.navigate(['sidebar/employee/list-employee']),
+        () => this._router.navigate(['employee/list-employee']),
         (err: any) => console.log(err)
       );
     } else 
     {
       this._employeeService.addEmployee(this.employee).subscribe(
-        () => this._router.navigate(['sidebar/employee/list-employee']),
+        () => this._router.navigate(['employee/list-employee']),
         (err: any) => console.log(err)
       );
     }

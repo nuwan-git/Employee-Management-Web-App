@@ -51,7 +51,7 @@
                           <ul>
                             <li *ngFor="let submenu of menu.submenus">
                              
-                              <a [routerLink]="['/sidebar/employee', submenu.dynamicUrl ]"> {{submenu.title}}
+                              <a [routerLink]="['/employee', submenu.dynamicUrl ]"> {{submenu.title}}
                                 <span *ngIf="submenu.badge" class="badge badge-pill" [ngClass]="submenu.badge.class">{{submenu.badge.text}}</span>
                               </a>
                             </li>
