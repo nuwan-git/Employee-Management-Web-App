@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {HttpModule}from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router'
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer/footer.component';
@@ -14,8 +14,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployeeComponent } from './components/employee/employee.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import {EmployeeService} from './services/employee.service';
 // import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -24,18 +24,22 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { SearchEmployeeComponent } from './components/search-employee/search-employee.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ListEmployeeComponent } from './components/list-employee/list-employee.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
 const appRoute : Routes = [
+      { path: '', redirectTo: 'sidebar', pathMatch: 'full'},
       { path:'about', 
           component:AboutComponent
        },
-      { path:'home', 
-          component:HomeComponent
+       { path:'home', 
+        component:HomeComponent
       },
-      { path:'contact', 
+       { path:'contact', 
           component:ContactComponent
       },
       { path:'sidebar', 
@@ -43,14 +47,18 @@ const appRoute : Routes = [
 
           children:[
             
-            {path:'add-employee', component:AddEmployeeComponent},
-            {path:'search-employee', component:SearchEmployeeComponent}
-      
-           ]
+            // {path:'employee/:operation', component:AddEmployeeComponent},
+            {path:'employee/add-employee', component:AddEmployeeComponent},
+            {path:'employee/search-employee', component:SearchEmployeeComponent},
+            {path:'employee/list-employee', component:ListEmployeeComponent},
+            {path: 'employee/edit-employee/:id', component: AddEmployeeComponent},
+            {path:'', component:SearchEmployeeComponent}
+            
+          ]
       },
     
-      { path:'**', 
-      component:SidebarComponent
+      { path:'', 
+        component:HomeComponent
       }
 
 ]
@@ -68,15 +76,18 @@ const appRoute : Routes = [
     HomeComponent,
     EmployeeComponent,
     AddEmployeeComponent,
-    SearchEmployeeComponent
+    SearchEmployeeComponent,
+    PagenotfoundComponent,
+    ListEmployeeComponent
     
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
-   
+    ReactiveFormsModule,
     PerfectScrollbarModule,
     RouterModule.forRoot(appRoute)
   ],
@@ -84,7 +95,9 @@ const appRoute : Routes = [
       {
           provide: PERFECT_SCROLLBAR_CONFIG,
           useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-      }
+      },
+      EmployeeService
+      
 
   ],
   bootstrap: [AppComponent]

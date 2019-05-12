@@ -35,6 +35,10 @@ export class SidebarService {
         {
           title: 'Search-Employee',
           dynamicUrl : 'search-employee'
+        },
+        {
+          title: 'View-Employee',
+          dynamicUrl : 'list-employee'
         }
       ]
     },
