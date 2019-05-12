@@ -6,7 +6,6 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { SearchEmployeeComponent } from './search-employee/search-employee.component';
 import { ListEmployeeComponent } from './list-employee/list-employee.component';
-import { SidebarComponent } from '../../components/shared/sidebar/sidebar/sidebar.component';
 
 import{EmployeeService} from './services/employee.service';
 
@@ -26,8 +25,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AddEmployeeComponent,
     SearchEmployeeComponent,
-    ListEmployeeComponent,
-    SidebarComponent
+    ListEmployeeComponent
   ],
   providers:[
     {

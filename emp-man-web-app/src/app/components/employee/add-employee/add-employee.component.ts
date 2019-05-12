@@ -245,13 +245,13 @@ removeClickPhoneGroup(phoneNumberGroup : number) : void {
 
     if(this.employee.id){
       this._employeeService.updateEmployee(this.employee).subscribe(
-        () => this._router.navigate(['sidebar/employee/list-employee']),
+        () => this._router.navigate(['employee/list-employee']),
         (err: any) => console.log(err)
       );
     } else 
     {
       this._employeeService.addEmployee(this.employee).subscribe(
-        () => this._router.navigate(['sidebar/employee/list-employee']),
+        () => this._router.navigate(['employee/list-employee']),
         (err: any) => console.log(err)
       );
     }

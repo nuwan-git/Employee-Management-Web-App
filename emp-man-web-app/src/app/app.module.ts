@@ -21,6 +21,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { SidebarComponent } from './components/shared/sidebar/sidebar/sidebar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 //import { EmployeeModule } from './components/employee/employee.module';
@@ -38,6 +39,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ContactComponent,
     DashboardComponent,
     HomeComponent,
+    SidebarComponent,
     PagenotfoundComponent,
     
   ],

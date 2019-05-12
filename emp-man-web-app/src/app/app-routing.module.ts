@@ -28,7 +28,14 @@ const routes: Routes = [
     { path:'', 
       component:HomeComponent
     },
-    { path: 'employee', loadChildren: './components/employee/employee.module#EmployeeModule' },
+    { path:'', 
+     component:SidebarComponent,
+
+     children:[
+        { path: 'employee', loadChildren: './components/employee/employee.module#EmployeeModule' },
+     ]
+     
+    },
     { path: '**',
       component: PagenotfoundComponent 
     }
