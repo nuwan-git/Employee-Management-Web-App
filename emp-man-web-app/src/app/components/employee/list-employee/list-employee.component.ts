@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
-import { Employee } from '../../models/employee';
+import { EmployeeService } from '../services/employee.service';
+import { Employee } from '../models/employee';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-list-employee',
@@ -30,7 +30,7 @@ export class ListEmployeeComponent implements OnInit {
 
   editButtonClick(employeeId: number) {
 
-    this._router.navigate(['/sidebar/employee/edit-employee', employeeId])
+    this._router.navigate(['/employee/edit-employee', employeeId])
 
   }
 

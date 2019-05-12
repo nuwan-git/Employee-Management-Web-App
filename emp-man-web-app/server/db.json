@@ -23,7 +23,7 @@
     },
     {
       "id": 2,
-      "empName": "vimal wik",
+      "empName": "vimal wik123",
       "email": "vimal@gmail.com",
       "gender": "male",
       "state": "Honkong",
@@ -134,6 +134,21 @@
         }
       ],
       "isActive": false
+    },
+    {
+      "id": 8,
+      "empName": "Nuwan Rathnayaka 123",
+      "email": "nuwanrathnayaka.c@gmail.com",
+      "city": "Ambanpola",
+      "state": "- None -",
+      "gender": "male",
+      "postalCode": "60650",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0778929851"
+        }
+      ],
+      "isActive": true
     }
   ]
 }

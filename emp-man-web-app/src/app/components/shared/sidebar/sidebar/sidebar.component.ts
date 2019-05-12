@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarService } from './sidebar.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
-import { AddEmployeeComponent } from '../../../add-employee/add-employee.component';
+import { AddEmployeeComponent } from '../../../employee/add-employee/add-employee.component';
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
