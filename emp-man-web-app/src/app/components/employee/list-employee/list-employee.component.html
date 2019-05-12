@@ -1,0 +1,49 @@
+<div class="container-fluid bg-light py-3">
+<!--Table-->
+<div class="col-md-12">
+<table class="table table-striped w-100">
+
+    <!--Table head-->
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone No</th>
+        <th>Gender</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <!--Table head-->
+  
+    <!--Table body-->
+    <tbody>
+      <tr *ngFor = "let employee of activeEmployees" class="table.warning">
+        <th scope="row"></th>
+        <td>{{employee.empName}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.phoneNumber[0].phoneNumber}}</td>
+        <td>{{employee.gender}}</td>
+        <td><button type="button" class="btn btn-sm btn-primary">
+            <span class="btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></span>View</button>
+        </td>
+        <td><button type="button" class="btn btn-sm btn-primary" (click)="editButtonClick(employee.id)">
+            <span class="btn-sm"><i class="far fa-edit fa-x"></i></span>Edit</button>
+        </td>
+        <td><button type="button" class="btn btn-sm btn-danger" (click)="deleteButtonClick(employee.id)">
+            <span class="btn-sm"><i class="fa fa-close fa-x"></i></span>Delete</button>
+        </td>
+        
+      </tr>
+     
+    </tbody>
+    <!--Table body-->
+  
+  
+  </table>
+  </div>
+  <!--Table-->
+</div>
+

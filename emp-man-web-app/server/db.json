@@ -1,0 +1,154 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "empName": "shan wik123",
+      "email": "shan@gmail.com",
+      "state": "Melbone",
+      "postalCode": "Australia",
+      "city": "melbone colombo 123",
+      "gender": "male",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0114565845"
+        },
+        {
+          "phoneNumber": "0774544546"
+        },
+        {
+          "phoneNumber": "0115655555"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "empName": "vimal wik123",
+      "email": "vimal@gmail.com",
+      "gender": "male",
+      "state": "Honkong",
+      "postalCode": "Honkong",
+      "city": "Jakartha",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0378987878"
+        },
+        {
+          "phoneNumber": "0805545455"
+        },
+        {
+          "phoneNumber": "0785456512"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "empName": "nuwani",
+      "email": "nuwanirathnayaka.c@gmail.com",
+      "city": "Ambanpola",
+      "state": "- None -",
+      "postalCode": "60650",
+      "gender": "female",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0704666646"
+        },
+        {
+          "phoneNumber": "0453212345"
+        },
+        {
+          "phoneNumber": "0306545454"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "empName": "nuwan cnr",
+      "email": "nuwanrathnayaka.c@gmail.com",
+      "city": "Ambanpola",
+      "state": "Kurunagela",
+      "postalCode": "60650",
+      "gender": "male",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0222123112"
+        },
+        {
+          "phoneNumber": "0776516515"
+        },
+        {
+          "phoneNumber": "0112134121"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "empName": " ",
+      "email": "nuwanrathnayaka.c@gmail.com",
+      "city": "Ambanpola",
+      "state": "Kurunagela",
+      "postalCode": "60650",
+      "gender": "male",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0222123112"
+        },
+        {
+          "phoneNumber": "0776516515"
+        },
+        {
+          "phoneNumber": "0112134121"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "empName": "chanux bro",
+      "email": "chanuka.c@gmail.com",
+      "city": "kolonnawa",
+      "state": "colombo north",
+      "gender": "female",
+      "postalCode": "45856",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0112325235"
+        }
+      ],
+      "isActive": true
+    },
+    {
+      "id": 7,
+      "empName": "gayan",
+      "email": "gayan@gmail.com",
+      "city": "kollupitiya",
+      "state": "colombo",
+      "gender": "male",
+      "postalCode": "65050",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0785454565"
+        }
+      ],
+      "isActive": false
+    },
+    {
+      "id": 8,
+      "empName": "Nuwan Rathnayaka 123",
+      "email": "nuwanrathnayaka.c@gmail.com",
+      "city": "Ambanpola",
+      "state": "- None -",
+      "gender": "male",
+      "postalCode": "60650",
+      "phoneNumber": [
+        {
+          "phoneNumber": "0778929851"
+        }
+      ],
+      "isActive": true
+    }
+  ]
+}
